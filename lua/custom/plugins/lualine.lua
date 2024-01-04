@@ -20,12 +20,7 @@ return {
       local c = {}
 
       for _, client in pairs(clients) do
-        -- if client.name ~= 'null-ls' then
-        --   clients[#clients + 1] = client.name
-        -- end
-
         table.insert(c, '[' .. client.name .. '] ')
-        -- local formatters = require 'vim.lsp.null-ls'
       end
       return table.concat(c, '')
     end
@@ -37,6 +32,9 @@ return {
         theme = 'catppuccin-mocha',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+          'alpha',
+        },
       },
       sections = {
         lualine_a = { 'mode' },
