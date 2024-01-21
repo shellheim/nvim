@@ -14,12 +14,6 @@ return {
       flavour = 'mocha',
       transparent_background = true,
     }
-    -- local onedark = require 'onedark'
-    -- onedark.setup {
-    --   style = 'darker',
-    --   transparent = true,
-    -- }
-    -- onedark.load()
     vim.cmd.colorscheme 'catppuccin'
   end,
 }
