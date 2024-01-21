@@ -5,17 +5,9 @@ return {
   config = function()
     local lualine = require 'lualine'
 
-    -- Get the table of attached buffers.
+    -- Get the table of attached language servers.
 
-    local clients_lsp = function()
-      -- gets the current buffer id
-      local buffer = vim.api.nvim_get_current_buf()
-      -- uses the `buffer` variable as parameter for property `bufner` to get attached lsp clients
-      local clients = vim.lsp.get_active_clients { bufnr = buffer }
-
-      if vim.tbl_isempty(clients) then
-        return 'LSP Inactive'
-      end
+    local format_clients = function(clients)
       -- Parse the retuned table
       local c = {}
 
@@ -25,7 +17,28 @@ return {
       return table.concat(c, '')
     end
 
-    -- Display attached lsp servers
+    local lsp_clients = function()
+      -- get lsp clients attched to current buffer
+      local buffer = vim.api.nvim_get_current_buf()
+      local clients = vim.lsp.get_active_clients { bufnr = buffer }
+
+      -- if length of `client` tablie = 0, no clients were found
+      if #clients == 0 then
+        return 'LSP Inactive'
+      end
+      return format_clients(clients)
+    end
+
+    -- Get the table of attached formatters (could be linters too, e.g. shellcheck) from conform.nvim
+    local formatters = function()
+      local conform = require 'conform'
+      local buffer = vim.api.nvim_get_current_buf()
+      local formatters = conform.list_formatters(buffer)
+
+      return format_clients(formatters)
+    end
+
+    -- Display attached language servers
     lualine.setup {
       options = {
         icons_enabled = true,
@@ -40,7 +53,7 @@ return {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = { 'filename' },
-        lualine_x = { clients_lsp, 'fileformat', 'filetype' },
+        lualine_x = { lsp_clients, formatters, 'fileformat', { 'filetype', icon_only = true } },
         lualine_y = { 'progress' },
         lualine_z = { 'location' },
       },
