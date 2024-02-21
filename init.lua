@@ -88,7 +88,16 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      toggler = {
+        ---Line-comment toggle keymap
+        line = '<c-/>',
+        -- -Block-comment toggle keymap
+      },
+    },
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -404,6 +413,9 @@ local servers = {
       -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
       diagnostics = { disable = { 'missing-fields' } },
     },
+  },
+  emmet_language_server = {
+    filetypes = { 'html', 'eruby', 'htmldjango', 'javascriptreact', 'pug', 'typescriptreact' },
   },
 }
 
