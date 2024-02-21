@@ -11,7 +11,7 @@ return {
       float_opts = {
         border = 'curved',
       },
-      open_mapping = [[<c-/>]],
+      open_mapping = [[<c-p>]],
     }
   end,
 }
