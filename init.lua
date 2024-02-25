@@ -3,7 +3,6 @@
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -24,10 +23,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
 
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-
+  { 'tpope/vim-fugitive', lazy = true, event = 'VeryLazy' },
+  { 'tpope/vim-rhubarb', lazy = true, event = 'VeryLazy' },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -36,6 +33,7 @@ require('lazy').setup({
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
+    event = 'VeryLazy',
     dependencies = {
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
@@ -43,7 +41,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', event = 'InsertEnter', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -53,19 +51,21 @@ require('lazy').setup({
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    lazy = true,
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+      { 'hrsh7th/cmp-buffer' },
+      { 'hrsh7th/cmp-path' },
+      { 'L3MON4D3/LuaSnip' },
+      { 'saadparwaiz1/cmp_luasnip' },
 
       -- Adds LSP completion capabilities
-      'hrsh7th/cmp-nvim-lsp',
+      { 'hrsh7th/cmp-nvim-lsp' },
 
       -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
-      'onsails/lspkind.nvim',
+      { 'rafamadriz/friendly-snippets' },
+      { 'onsails/lspkind.nvim' },
     },
   },
 
@@ -75,6 +75,7 @@ require('lazy').setup({
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
+    event = 'VeryLazy',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
@@ -90,6 +91,7 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   {
     'numToStr/Comment.nvim',
+    event = 'VeryLazy',
     opts = {
       toggler = {
         ---Line-comment toggle keymap
@@ -102,9 +104,11 @@ require('lazy').setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
+    event = 'VeryLazy',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      lazy = true,
       -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available. Make sure you have the system
       -- requirements installed.
       {
@@ -136,6 +140,7 @@ require('lazy').setup({
 
 -- Keymaps
 require 'custom.keymaps.keymaps'
+require 'custom.conf.diagnostics'
 
 -- [[ Setting options ]]
 
@@ -336,6 +341,7 @@ local on_attach = function(_, bufnr)
   --
   -- In this case, we create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
+
   local nmap = function(keys, func, desc)
     if desc then
       desc = 'LSP: ' .. desc
