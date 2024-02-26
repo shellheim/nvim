@@ -51,12 +51,13 @@ local plugins = {
   -- "gc" to comment visual regions/lines
   {
     'numToStr/Comment.nvim',
-    event = 'InsertEnter',
+    event = 'BufRead',
     opts = {
       toggler = {
-        ---Line-comment toggle keymap
         line = '<c-/>',
-        -- -Block-comment toggle keymap
+      },
+      opleader = {
+        line = '<c-/>',
       },
     },
   },
