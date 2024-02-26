@@ -30,6 +30,20 @@ return {
     }
     dashboard.section.footer.val = ashaar()
     alpha.setup(dashboard.opts)
-  end,
+    -- To benchmark startup time and lazy loading
+    vim.api.nvim_create_autocmd('User', {
+      callback = function()
+        local stats = require("lazy").stats()
+        local ms = math.floor(stats.startuptime * 100) / 100
+        dashboard.section.footer.val = "󱐌 Lazy-loaded "
+            .. stats.loaded
+            .. "/"
+            .. stats.count
+            .. " plugins in "
+            .. ms
+            .. "ms"
+        pcall(vim.cmd.AlphaRedraw)
+      end,
+    })
+  end
 }
-
