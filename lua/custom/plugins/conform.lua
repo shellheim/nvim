@@ -18,7 +18,7 @@ return {
     local opts = {
       formatters_by_ft = {
         lua = { 'stylua' },
-        sh = { 'shellcheck', 'shfmt' },
+        sh = { 'shfmt' },
         json = { 'jq' },
         jsonc = { 'jq' },
       },
