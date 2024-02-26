@@ -1,6 +1,6 @@
 return {
   'nvim-lualine/lualine.nvim',
-  event = 'VeryLazy',
+  event = { 'VeryLazy', 'BufEnter', 'BufRead' },
 
   config = function()
     local lualine = require 'lualine'
