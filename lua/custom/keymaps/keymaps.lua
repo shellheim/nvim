@@ -17,28 +17,6 @@ key.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics 
 -- Ctrl + s to save
 key.set({ 'n', 'i' }, '<C-s>', '<Esc>:w<cr>', { noremap = true, silent = true, desc = 'Save' })
 
--- Plugins
-
---Telescope
-key.set('n', 'r', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-key.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
-key.set('n', '<leader>/', function()
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
-end, { desc = '[/] Fuzzily search in current buffer' })
-
-key.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-key.set('n', '<leader>f', require('telescope.builtin').find_files, { desc = 'Search [F]iles' })
-key.set('n', '<leader>p', ':lua require"telescope".extensions.project.project{}<CR>', { desc = 'Search [P]rojects' })
-key.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-key.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-key.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-key.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-key.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-key.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
-
 -- Neotree
 key.set('n', '<leader>e', ':Neotree<cr>', { desc = 'Open Neotree' })
 
