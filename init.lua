@@ -21,8 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- This list only contains trivial (to setup) plugins
 local plugins = {
-  { 'tpope/vim-fugitive', event = 'VeryLazy' },
-  { 'tpope/vim-rhubarb', event = 'VeryLazy' },
+  { 'tpope/vim-fugitive', event = 'BufRead' },
+  { 'tpope/vim-rhubarb', event = 'BufRead' },
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
@@ -35,7 +35,7 @@ local plugins = {
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    event = 'VeryLazy',
+    event = 'BufRead',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help ibl`
     main = 'ibl',
@@ -51,7 +51,7 @@ local plugins = {
   -- "gc" to comment visual regions/lines
   {
     'numToStr/Comment.nvim',
-    event = 'VeryLazy',
+    event = 'InsertEnter',
     opts = {
       toggler = {
         ---Line-comment toggle keymap
