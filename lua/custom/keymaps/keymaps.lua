@@ -43,4 +43,5 @@ key.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]ear
 key.set('n', '<leader>e', ':Neotree<cr>', { desc = 'Open Neotree' })
 
 -- Colorschme
-key.set({ 'n', 'v' }, '<leader>s', '<Esc>:Telescope colorscheme<cr>', { noremap = true, silent = true, desc = 'Choose a colorschme' })
+key.set({ 'n', 'v' }, '<leader>s', '<Esc>:Telescope colorscheme<cr>',
+  { noremap = true, silent = true, desc = 'Choose a colorschme' })
