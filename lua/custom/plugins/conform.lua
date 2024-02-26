@@ -24,7 +24,7 @@ return {
       },
       format_on_save = {
         timeout_ms = 1000,
-        lsp_fallback = true,
+        lsp_fallback = false,
       },
     }
     for _, lang in ipairs(prettier_langs) do

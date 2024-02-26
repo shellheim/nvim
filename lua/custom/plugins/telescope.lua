@@ -2,7 +2,7 @@ return {
   'nvim-telescope/telescope.nvim',
   event = 'VeryLazy',
   branch = '0.1.x',
-  dependencies = { 	
+  dependencies = {
     'nvim-lua/plenary.nvim',
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available. Make sure you have the system
     -- requirements installed.
@@ -13,9 +13,8 @@ return {
         return vim.fn.executable 'make' == 1
       end,
     },
-      'nvim-telescope/telescope-project.nvim',
+    'nvim-telescope/telescope-project.nvim',
   },
-
 
   config = function()
     require('telescope').setup {
@@ -49,8 +48,7 @@ return {
       end
 
       -- Find the Git root directory from the current file's path
-      local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')
-          [1]
+      local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')[1]
       if vim.v.shell_error ~= 0 then
         print 'Not a git repository. Searching on current working directory'
         return cwd
@@ -69,5 +67,5 @@ return {
     end
 
     vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
-  end
+  end,
 }
