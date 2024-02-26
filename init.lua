@@ -86,12 +86,14 @@ local lazy_settings = {
     },
   },
 }
+
+-- Addtional Configuration before lazy cause nvim-notify is weird
+require 'custom.conf'
+
 require('lazy').setup(plugins, lazy_settings)
 
 -- Keymaps
 require 'custom.keymaps.keymaps'
--- Addtional Configuration
-require 'custom.conf'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
