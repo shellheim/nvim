@@ -18,7 +18,9 @@ key.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics 
 key.set({ 'n', 'i' }, '<C-s>', '<Esc>:w<cr>', { noremap = true, silent = true, desc = 'Save' })
 
 -- Neotree
-key.set('n', '<leader>e', ':Neotree<cr>', { desc = 'Open Neotree' })
+key.set('n', '<leader>e', ':Neotree<cr>', { desc = 'Op[e]n Neotree' })
+-- nvim-notify
 
+key.set('n', '<leader>nf', ':Telescope notify<cr>', { desc = '[N]oti[f]y History' })
 -- Colorschme
 key.set({ 'n', 'v' }, '<leader>s', '<Esc>:Telescope colorscheme<cr>', { noremap = true, silent = true, desc = 'Choose a colorschme' })

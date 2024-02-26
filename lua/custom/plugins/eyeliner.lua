@@ -1,5 +1,6 @@
 return {
   'jinh0/eyeliner.nvim',
+  event = { 'BufReadPre' },
   config = function()
     local eyeliner = require 'eyeliner'
     eyeliner.setup {
