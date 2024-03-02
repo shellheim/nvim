@@ -1,6 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
-  event = 'BufReadPre',
+  event = { 'BufEnter *.*', 'BufRead' },
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },

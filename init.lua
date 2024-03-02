@@ -43,7 +43,17 @@ local plugins = {
     },
   },
   -- Add rainbow brackets
-  { 'HiPhish/rainbow-delimiters.nvim', main = 'rainbow-delimiters.setup', event = { 'BufRead', 'Bufenter *.*' } },
+  {
+    'HiPhish/rainbow-delimiters.nvim',
+    config = function()
+      local rainbow_delimiters = require 'rainbow-delimiters'
+      ---@type rainbow_delimiters.config
+      vim.g.rainbow_delimiters = {
+        blacklist = { 'html' },
+      }
+    end,
+    event = { 'BufRead', 'Bufenter *.*' },
+  },
 
   -- "gc" to comment visual regions/lines
   {
