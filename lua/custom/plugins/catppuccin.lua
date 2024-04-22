@@ -1,5 +1,4 @@
 return {
-  -- 'navarasu/onedark.nvim',
   'catppuccin/nvim',
   lazy = false,
   -- so it doesn't show up as 'nvim' in lazy.

@@ -3,7 +3,7 @@ return {
   lazy = false,
   dependencies = {
     'nvim-tree/nvim-web-devicons',
-    'shellheim/ashaar.nvim',
+    { 'shellheim/ashaar.nvim', branch = 'dev' },
   },
 
   config = function()
@@ -12,17 +12,15 @@ return {
     local ashaar = require 'ashaar'
     -- Set header
     dashboard.section.header.val = {
-      '███▄▄▄▄      ▄████████  ▄██████▄   ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄   ',
-      '███▀▀▀██▄   ███    ███ ███    ███ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄ ',
-      '███   ███   ███    █▀  ███    ███ ███    ███ ███▌ ███   ███   ███ ',
-      '███   ███  ▄███▄▄▄     ███    ███ ███    ███ ███▌ ███   ███   ███ ',
-      '███   ███ ▀▀███▀▀▀     ███    ███ ███    ███ ███▌ ███   ███   ███ ',
-      '███   ███   ███    █▄  ███    ███ ███    ███ ███  ███   ███   ███ ',
-      '███   ███   ███    ███ ███    ███ ███    ███ ███  ███   ███   ███ ',
-      ' ▀█   █▀    ██████████  ▀██████▀   ▀██████▀  █▀    ▀█   ███   █▀  ',
+
+      '███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗',
+      '████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║',
+      '██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║',
+      '██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║',
+      '██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║',
+      '╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝',
     }
     dashboard.section.buttons.val = {
-      dashboard.button('n', ' > New File', '<cmd>ene<CR>'),
       dashboard.button('f', '󰱼 > Find Files', '<cmd>Telescope find_files<CR>'),
       dashboard.button('r', ' > Find Recent Files', '<cmd>Telescope oldfiles<CR>'),
       dashboard.button('p', ' > Find Projects', '<cmd>Telescope project<CR>'),
