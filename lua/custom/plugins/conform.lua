@@ -13,6 +13,8 @@ return {
       'markdown',
       'css',
       'html',
+      'yaml',
+      'toml',
     }
     local opts = {
       formatters_by_ft = {

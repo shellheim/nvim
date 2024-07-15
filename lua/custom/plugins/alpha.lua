@@ -3,7 +3,7 @@ return {
   lazy = false,
   dependencies = {
     'nvim-tree/nvim-web-devicons',
-    { 'shellheim/ashaar.nvim', branch = 'dev' },
+    'shellheim/ashaar.nvim',
   },
 
   config = function()

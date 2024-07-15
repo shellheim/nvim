@@ -29,7 +29,7 @@ return {
           'vim',
         },
 
-        -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+        -- Autoinstall languages that are not installed.
         auto_install = true,
 
         highlight = { enable = true },

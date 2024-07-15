@@ -15,7 +15,7 @@ return {
     end)
 
     vim.keymap.set('n', '<leader>ak', function()
-      harpoon:list():append()
+      harpoon:list():add()
     end)
 
     vim.keymap.set('n', '<leader>1', function()
