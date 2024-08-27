@@ -24,8 +24,24 @@ local plugins = {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
+  -- Highlight TODOs
+  { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = {} },
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    config = function()
+      require('which-key').add {
+        { '<leader>c', group = '[C]ode' },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>g', group = '[G]it' },
+        { '<leader>h', group = 'More git' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>s', group = '[S]earch' },
+        { '<leader>w', group = '[W]orkspace' },
+      }
+    end,
+  },
 
   {
     -- Add indentation guides even on blank lines
@@ -119,13 +135,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'More git', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-}
+-- -- document existing key chains
+-- require('which-key').register {
+--   ['<leader>c'] = { group = '[C]ode', _ = 'which_key_ignore' },
+--   ['<leader>d'] = { group = '[D]ocument', _ = 'which_key_ignore' },
+--   ['<leader>g'] = { group = '[G]it', _ = 'which_key_ignore' },
+--   ['<leader>h'] = { group = 'More git', _ = 'which_key_ignore' },
+--   ['<leader>r'] = { group = '[R]ename', _ = 'which_key_ignore' },
+--   ['<leader>s'] = { group = '[S]earch', _ = 'which_key_ignore' },
+-- ['<leader>w'] = { group = '[W]orkspace', _ = 'which_key_ignore' },
+-- }
