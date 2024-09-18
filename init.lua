@@ -134,14 +134,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = highlight_group,
   pattern = '*',
 })
-
--- -- document existing key chains
--- require('which-key').register {
---   ['<leader>c'] = { group = '[C]ode', _ = 'which_key_ignore' },
---   ['<leader>d'] = { group = '[D]ocument', _ = 'which_key_ignore' },
---   ['<leader>g'] = { group = '[G]it', _ = 'which_key_ignore' },
---   ['<leader>h'] = { group = 'More git', _ = 'which_key_ignore' },
---   ['<leader>r'] = { group = '[R]ename', _ = 'which_key_ignore' },
---   ['<leader>s'] = { group = '[S]earch', _ = 'which_key_ignore' },
--- ['<leader>w'] = { group = '[W]orkspace', _ = 'which_key_ignore' },
--- }
