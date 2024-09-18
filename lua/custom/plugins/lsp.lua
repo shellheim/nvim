@@ -60,7 +60,7 @@ return {
     }
     require('mason-lspconfig').setup()
     local servers = {
-      tsserver = {},
+      ts_ls = {},
 
       lua_ls = {
         Lua = {
