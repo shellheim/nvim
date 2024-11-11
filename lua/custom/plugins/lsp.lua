@@ -37,7 +37,7 @@ return {
         },
       },
       emmet_language_server = {
-        filetypes = { 'html', 'eruby', 'htmldjango', 'javascriptreact', 'pug', 'typescriptreact' },
+        filetypes = { 'html', 'eruby', 'htmldjango', 'javascriptreact', 'pug', 'typescriptreact', 'astro' },
       },
       cssls = {},
     }

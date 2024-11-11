@@ -13,18 +13,19 @@ return {
       'markdown',
       'css',
       'html',
-      'yaml',
-      'toml',
     }
     local opts = {
       formatters_by_ft = {
+        svelte = {
+          lsp_format = 'lsp_fallback',
+        },
         lua = { 'stylua' },
         sh = { 'shfmt' },
         json = { 'jq' },
         jsonc = { 'jq' },
       },
       format_on_save = {
-        timeout_ms = 1000,
+        timeout_ms = 3000,
         lsp_fallback = false,
       },
     }

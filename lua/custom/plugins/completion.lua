@@ -17,15 +17,13 @@ return {
     { 'onsails/lspkind.nvim' },
   },
   config = function()
-    -- mason-lspconfig requires that these setup functions are called in this order
-    -- before setting up the servers.
-    -- [[ Configure nvim-cmp ]]
-    -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
     local lspkind = require 'lspkind'
 
     require('luasnip.loaders.from_vscode').lazy_load()
+
+    luasnip.filetype_extend('astro', { 'html' })
     luasnip.config.setup {}
 
     cmp.setup {

@@ -59,8 +59,6 @@ local plugins = {
     },
   },
 
-  -- A nice looking light theme just in case
-  { 'rebelot/kanagawa.nvim', lazy = false, opts = {} },
   -- Add rainbow brackets
   {
     'HiPhish/rainbow-delimiters.nvim',
