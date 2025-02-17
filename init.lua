@@ -24,8 +24,6 @@ local plugins = {
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- Highlight TODOs
-  { 'folke/todo-comments.nvim', dependencies = { 'nvim-lua/plenary.nvim' }, opts = {} },
   -- Useful plugin to show you pending keybinds.
   {
     'folke/which-key.nvim',

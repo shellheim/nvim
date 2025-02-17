@@ -40,6 +40,7 @@ return {
         filetypes = { 'html', 'eruby', 'htmldjango', 'javascriptreact', 'pug', 'typescriptreact', 'astro' },
       },
       cssls = {},
+      biome = { 'svelte', 'vue', 'astro' },
     }
 
     -- Setup neovim lua configuration

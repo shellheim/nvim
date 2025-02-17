@@ -23,6 +23,8 @@ return {
         sh = { 'shfmt' },
         json = { 'jq' },
         jsonc = { 'jq' },
+        cpp = { 'clang-format' },
+        c = { 'clang-format' },
       },
       format_on_save = {
         timeout_ms = 3000,

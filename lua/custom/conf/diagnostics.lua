@@ -1,4 +1,4 @@
-vim.diagnostic.config { virtual_text = false }
+vim.diagnostic.config { virtual_text = true }
 vim.api.nvim_create_autocmd('CursorHold', {
   callback = function()
     local opts = {
