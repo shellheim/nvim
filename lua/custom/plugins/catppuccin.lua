@@ -12,7 +12,7 @@ return {
     local catppuccin = require 'catppuccin'
     catppuccin.setup {
       flavour = 'mocha',
-      transparent_background = false,
+      transparent_background = true,
     }
     vim.cmd.colorscheme 'catppuccin'
   end,

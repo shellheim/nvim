@@ -20,7 +20,7 @@ return {
     local lsp_clients = function()
       -- get lsp clients attched to current buffer
       local buffer = vim.api.nvim_get_current_buf()
-      local clients = vim.lsp.get_active_clients { bufnr = buffer }
+      local clients = vim.lsp.get_clients { bufnr = buffer }
 
       -- if length of `client` tablie = 0, no clients were found
       if #clients == 0 then
