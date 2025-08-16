@@ -24,6 +24,7 @@ return {
         json = { 'jq' },
         jsonc = { 'jq' },
         cpp = { 'clang-format' },
+        python = { 'black' },
         c = { 'clang-format' },
       },
       format_on_save = {
