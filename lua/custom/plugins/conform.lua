@@ -6,6 +6,7 @@ return {
 
     -- Reduce boilerplate by looping over the langs prettier supports.
     local prettier_langs = {
+      'astro',
       'javascript',
       'javascriptreact',
       'typescript',
