@@ -11,6 +11,7 @@ return {
     local dashboard = require 'alpha.themes.dashboard'
     local ashaar = require 'ashaar'
     -- Set header
+    -- ASCII Font Name: Delta Corps Priest 1
     dashboard.section.header.val = {
       '███▄▄▄▄      ▄████████  ▄██████▄   ▄█    █▄   ▄█    ▄▄▄▄███▄▄▄▄   ',
       '███▀▀▀██▄   ███    ███ ███    ███ ███    ███ ███  ▄██▀▀▀███▀▀▀██▄ ',
@@ -21,15 +22,6 @@ return {
       '███   ███   ███    ███ ███    ███ ███    ███ ███  ███   ███   ███ ',
       ' ▀█   █▀    ██████████  ▀██████▀   ▀██████▀  █▀    ▀█   ███   █▀  ',
     }
-    -- dashboard.section.header.val = {
-    --
-    --   '███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗',
-    --   '████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║',
-    --   '██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║',
-    --   '██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║',
-    --   '██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║',
-    --   '╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝',
-    -- }
     dashboard.section.buttons.val = {
       dashboard.button('f', '󰱼 > Find Files', '<cmd>Telescope find_files<CR>'),
       dashboard.button('r', ' > Find Recent Files', '<cmd>Telescope oldfiles<CR>'),
