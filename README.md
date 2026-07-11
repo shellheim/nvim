@@ -1,5 +1,7 @@
 # Neovim Config
 
+![](https://github.com/user-attachments/assets/b3c83b51-83ef-4e6a-8576-d57224fd5054)
+
 This is my personal Neovim setup, originally based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim/). This README serves as a guide for myself.
 
 - Managed with [lazy.nvim](https://github.com/folke/lazy.nvim)
@@ -67,7 +69,7 @@ Leader is `<Space>`.
 | ----------------- | ------------------------------------------ |
 | `<leader>sf`      | Find files                                 |
 | `<leader>sg`      | Grep for a string across the whole project |
-| `<leader>sw`      | Grep the word under the cursor            |
+| `<leader>sw`      | Grep the word under the cursor             |
 | `<leader>sG`      | Grep for a string, scoped to the git root  |
 | `<leader>gf`      | Find git-tracked files                     |
 | `<leader><space>` | Find open buffers                          |
@@ -77,7 +79,7 @@ Leader is `<Space>`.
 | `<leader>sh`      | Search help tags                           |
 | `<leader>sp`      | Switch projects                            |
 | `<leader>uc`      | Choose a colorscheme                       |
-| `<leader>/`       | Fuzzy search in the current buffer        |
+| `<leader>/`       | Fuzzy search in the current buffer         |
 
 ### LSP
 
@@ -113,7 +115,7 @@ Leader is `<Space>`.
 
 | Keymap    | Action                                     |
 | --------- | ------------------------------------------ |
-| `<C-s>`   | Save in normal and insert mode            |
+| `<C-s>`   | Save in normal and insert mode             |
 | `<C-/>`   | Toggle comment                             |
 | `j` / `k` | Move by visual line when a line is wrapped |
 
