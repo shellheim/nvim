@@ -1,16 +1,14 @@
 return {
   'neovim/nvim-lspconfig',
-  lazy = false,
+  event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {
-    -- Automatically install LSPs to stdpath for neovim
     'mason-org/mason.nvim',
     'mason-org/mason-lspconfig.nvim',
-    -- Additional lua configuration, makes nvim stuff amazing!
-    'folke/neodev.nvim',
+    --Completions/hover for the Neovim Lua API itself when editing this config
+    { 'folke/lazydev.nvim', ft = 'lua' },
   },
 
   config = function()
-    --  This function gets run when an LSP connects to a particular buffer.
     require('mason').setup {
       ui = {
         check_outdated_packages_on_open = true,
@@ -18,50 +16,55 @@ return {
         height = 0.9,
         border = 'rounded',
         icons = {
-          package_installed = ' ',
-          package_pending = ' ',
-          package_uninstalled = ' ',
+          package_installed = ' ',
+          package_pending = ' ',
+          package_uninstalled = ' ',
         },
       },
     }
-    require('mason-lspconfig').setup()
+
+    require('lazydev').setup()
+
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
     local servers = {
       ts_ls = {},
 
       lua_ls = {
-        Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-          -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-          diagnostics = { disable = { 'missing-fields' } },
+        settings = {
+          Lua = {
+            workspace = { checkThirdParty = false },
+            telemetry = { enable = false },
+            -- Silences noisy warnings when a table doesn't declare every field of an annotated type
+            diagnostics = { disable = { 'missing-fields' } },
+          },
         },
       },
+
       emmet_language_server = {
         filetypes = { 'html', 'eruby', 'htmldjango', 'javascriptreact', 'pug', 'typescriptreact', 'astro' },
       },
+
       cssls = {},
-      biome = { 'svelte', 'vue', 'astro' },
+
+      biome = {
+        filetypes = { 'svelte', 'vue', 'astro' },
+      },
     }
 
-    -- Setup neovim lua configuration
-    require('neodev').setup()
-
-    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-    -- Ensure the servers above are installed
-    local mason_lspconfig = require 'mason-lspconfig'
-
-    mason_lspconfig.setup {
+    -- Install every server listed above if it isn't already.
+    -- Hand each server its capabilities/settings/filetypes via vim.lsp.config
+    require('mason-lspconfig').setup {
       ensure_installed = vim.tbl_keys(servers),
-      function(server_name)
-        require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-        }
-      end,
     }
+
+    for name, server in pairs(servers) do
+      vim.lsp.config(name, {
+        capabilities = capabilities,
+        settings = server.settings,
+        filetypes = server.filetypes,
+      })
+    end
   end,
 }

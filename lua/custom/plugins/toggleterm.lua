@@ -1,6 +1,7 @@
 return {
   'akinsho/toggleterm.nvim',
   event = { 'BufRead', 'BufEnter' },
+  key = { '<c-p>' },
 
   config = function()
     local toggleterm = require 'toggleterm'

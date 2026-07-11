@@ -4,41 +4,38 @@ local key = vim.keymap
 
 key.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
--- Remap for dealing with word wrap
+-- Move by visual line, not physical line, when wrapped
 key.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 key.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- LSP
+-- Save
+key.set({ 'n', 'i' }, '<C-s>', '<cmd>write<cr>', { silent = true, desc = 'Save' })
 
--- find
-key.set('n', '<leader>fs', '<cmd>lua vim.lsp.buf.references()<cr>', { desc = '[F]ind All Reference[s]' })
-key.set('n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<cr>', { desc = 'Hover Symbol Information' })
+-- [[ LSP ]]
+-- These call bare functions from vim.lsp.buf - they no-op harmlessly if no
+-- LSP client is attached to the current buffer, so it's safe to keep them global.
+key.set('n', 'gd', vim.lsp.buf.definition, { desc = '[G]oto [D]efinition' })
+key.set('n', 'gD', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration' })
+key.set('n', 'gi', vim.lsp.buf.implementation, { desc = '[G]oto [I]mplementation' })
+key.set('n', 'td', vim.lsp.buf.type_definition, { desc = '[T]ype [D]efinition' })
+key.set('n', '<leader>k', vim.lsp.buf.hover, { desc = 'Hover Symbol Information' })
+key.set('n', '<leader>rf', vim.lsp.buf.references, { desc = '[F]ind All Reference[s]' })
+key.set('n', '<leader>rs', vim.lsp.buf.rename, { desc = '[R]ename [S]ymbol' })
+key.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
+key.set('n', '<leader>cf', function()
+  require('conform').format { async = true, lsp_fallback = true }
+end, { desc = '[C]ode [F]ormat buffer' })
 
-key.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', { desc = '[G]oto [D]efinition' })
-key.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', { desc = '[G]oto [D]eclration' })
-key.set('n', 'td', '<cmd>lua vim.lsp.buf.type_definition()<cr>', { desc = '[T]ype [D]efinition' })
-key.set('n', 'gi', '<cmd>lua vim.lsp.buf.type_definition()<cr>', { desc = '[G]oto [I]mplementation' })
+-- Diagnostics
+key.set('n', '[d', function()
+  vim.diagnostic.jump { count = -1, float = true }
+end, { desc = 'Go to previous diagnostic message' })
+key.set('n', ']d', function()
+  vim.diagnostic.jump { count = -1, float = true }
+end, { desc = 'Go to next diagnostic message' })
 
-key.set('n', '<leader>rs', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = '[R]ename [S]ymbol' })
-
-key.set('n', '<leader>ca', 'vim.lsp.buf.code_action', { desc = '[C]ode [A]ction' })
-
--- Diagnostic keymaps
-key.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-key.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 key.set('n', '<leader>gl', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 key.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- Ctrl + s to save
-key.set({ 'n', 'i' }, '<C-s>', '<cmd>write<cr>', { noremap = true, silent = true, desc = 'Save' })
-
--- Neotree
+-- Neo-tree
 key.set('n', '<leader>e', '<cmd>Neotree<cr>', { desc = 'Op[e]n Neotree' })
-
--- nvim-notify
-
-key.set('n', '<leader>nf', '<cmd>Telescope notify<cr>', { desc = '[N]oti[f]y History' })
-
--- Colorschme
-
-key.set({ 'n', 'v' }, '<leader>s', '<cmd>Telescope colorscheme<cr>', { noremap = true, silent = true, desc = 'Choose a colorschme' })

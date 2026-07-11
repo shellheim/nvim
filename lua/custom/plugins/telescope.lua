@@ -1,36 +1,10 @@
 return {
   'nvim-telescope/telescope.nvim',
-  event = 'VeryLazy',
-  branch = '0.1.x',
-  keys = function()
-    local key = vim.keymap.set
-    local builtin = require 'telescope.builtin'
-
-    key('n', 'r', builtin.oldfiles, { desc = '[?] Find recently opened files' })
-    key('n', '<leader><space>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-    key('n', '<leader>/', function()
-      builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-        winblend = 10,
-        previewer = false,
-      })
-    end, { desc = '[/] Fuzzily search in current buffer' })
-
-    key('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
-    key('n', '<leader>f', builtin.find_files, { desc = 'Search [F]iles' })
-    key('n', '<leader>p', ':lua require"telescope".extensions.project.project{}<CR>', { desc = 'Search [P]rojects' })
-
-    key('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-    key('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    key('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-    key('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-
-    key('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-    key('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-  end,
+  cmd = 'Telescope',
   dependencies = {
     'nvim-lua/plenary.nvim',
-    -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available. Make sure you have the system
-    -- requirements installed.
+    -- Fuzzy Finder Algorithm which requires local dependencies to be built.
+    -- Only load if `make` is available. Make sure you have the system requirements installed.
     {
       'nvim-telescope/telescope-fzf-native.nvim',
       build = 'make',
@@ -39,6 +13,89 @@ return {
       end,
     },
     'nvim-telescope/telescope-project.nvim',
+  },
+
+  -- Each entry is `{ lhs, rhs, desc = ... }`. rhs is a thunk (function), so
+  -- `require('telescope.builtin')` only runs the first time a key is actually
+  -- pressed - telescope itself won't load until then, keeping startup fast.
+  -- Ordered roughly most-to-least used.
+  keys = {
+    {
+      '<leader>f',
+      function()
+        require('telescope.builtin').find_files()
+      end,
+      desc = '[S]earch [F]iles',
+    },
+    {
+      '<leader>sg',
+      function()
+        require('telescope.builtin').live_grep()
+      end,
+      desc = '[S]earch by [G]rep (string across project)',
+    },
+    {
+      '<leader>sw',
+      function()
+        require('telescope.builtin').grep_string()
+      end,
+      desc = '[S]earch current [W]ord',
+    },
+    {
+      '<leader><space>',
+      function()
+        require('telescope.builtin').buffers()
+      end,
+      desc = 'Find existing buffers',
+    },
+    {
+      '<leader>so',
+      function()
+        require('telescope.builtin').oldfiles()
+      end,
+      desc = '[S]earch [O]ld (recent) files',
+    },
+    {
+      '<leader>sr',
+      function()
+        require('telescope.builtin').resume()
+      end,
+      desc = '[S]earch [R]esume',
+    },
+    {
+      '<leader>sd',
+      function()
+        require('telescope.builtin').diagnostics()
+      end,
+      desc = '[S]earch [D]iagnostics',
+    },
+    {
+      '<leader>sh',
+      function()
+        require('telescope.builtin').help_tags()
+      end,
+      desc = '[S]earch [H]elp',
+    },
+    { '<leader>sp', ':lua require("telescope").extensions.project.project{}<CR>', desc = '[S]earch [P]rojects' },
+    { '<leader>uc', '<cmd>Telescope colorscheme<cr>', desc = 'Choose a [U]I [C]olorscheme' },
+    {
+      '<leader>gf',
+      function()
+        require('telescope.builtin').git_files()
+      end,
+      desc = '[G]it: search tracked [F]iles',
+    },
+    { '<leader>sG', '<cmd>LiveGrepGitRoot<cr>', desc = '[S]earch by [G]rep on Git Root' },
+    {
+      '<leader>/',
+      function()
+        require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        })
+      end,
+      desc = '[/] Fuzzily search in current buffer',
+    },
   },
 
   config = function()
@@ -85,7 +142,7 @@ return {
     local function live_grep_git_root()
       local git_root = find_git_root()
       if git_root then
-        builtin.live_grep {
+        require('telescope.builtin').live_grep {
           search_dirs = { git_root },
         }
       end

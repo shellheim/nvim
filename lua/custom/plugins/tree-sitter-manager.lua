@@ -1,6 +1,6 @@
 return {
   'romus204/tree-sitter-manager.nvim',
-  lazy = false,
+  event = { 'BufReadPre', 'BufNewFile' },
   -- tree-sitter cli must be in $PATH
   config = function()
     local treesitter = require 'tree-sitter-manager'
