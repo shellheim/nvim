@@ -1,6 +1,6 @@
 # Neovim Config
 
-![](https://github.com/user-attachments/assets/b3c83b51-83ef-4e6a-8576-d57224fd5054)
+![](https://files.catbox.moe/lyb484.jpg)
 
 This is my personal Neovim setup, originally based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim/). This README serves as a guide for myself.
 
