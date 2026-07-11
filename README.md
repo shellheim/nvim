@@ -1,18 +1,18 @@
 # Neovim Config
 
-A personal Neovim setup originally based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim/). This README servers as a guide to myself.
+This is my personal Neovim setup, originally based on [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim/). This README serves as a guide for myself.
 
 - Managed with [lazy.nvim](https://github.com/folke/lazy.nvim)
-- LSP via [Mason](https://github.com/mason-org/mason.nvim) + native `vim.lsp.config()`
+- LSP via [Mason](https://github.com/mason-org/mason.nvim) and native `vim.lsp.config()`
 - Treesitter via [tree-sitter-manager.nvim](https://github.com/romus204/tree-sitter-manager.nvim)
-- Fuzzy finding via [Telescope](https://github.com/nvim-telescope/telescope.nvim).
+- Fuzzy finding via [Telescope](https://github.com/nvim-telescope/telescope.nvim)
 
 ## Requirements
 
 - `git`
-- `tree-sitter-cli` and a C compiler in `$PATH` (for parser installation)
-- `make` (optional — enables `telescope-fzf-native.nvim` for faster fuzzy matching)
-- [Nerd Font](https://www.nerdfonts.com/) (for icons in the statusline, dashboard, and file explorer)
+- `tree-sitter-cli` and a C compiler in `$PATH` for parser installation
+- `make` (optional. This enables `telescope-fzf-native.nvim` for faster fuzzy matching)
+- [Nerd Font](https://www.nerdfonts.com/) for icons in the statusline, dashboard, and file explorer
 
 ## Installation
 
@@ -55,7 +55,7 @@ nvim
         └── autopairs.lua, colorizer.lua, eyeliner.lua, mdx.lua, surround.lua
 ```
 
-To write a new config file, add it under `lua/custom/plugins/`. It'll auto-picked up via `{ import = 'custom/plugins' }` in `init.lua`.
+To write a new config file, add it under `lua/custom/plugins/`. It will be automatically picked up via `{ import = 'custom/plugins' }` in `init.lua`.
 
 ## Keymap cheatsheet
 
@@ -67,7 +67,7 @@ Leader is `<Space>`.
 | ----------------- | ------------------------------------------ |
 | `<leader>sf`      | Find files                                 |
 | `<leader>sg`      | Grep for a string across the whole project |
-| `<leader>sw`      | Grep the word under the cursor             |
+| `<leader>sw`      | Grep the word under the cursor            |
 | `<leader>sG`      | Grep for a string, scoped to the git root  |
 | `<leader>gf`      | Find git-tracked files                     |
 | `<leader><space>` | Find open buffers                          |
@@ -77,7 +77,7 @@ Leader is `<Space>`.
 | `<leader>sh`      | Search help tags                           |
 | `<leader>sp`      | Switch projects                            |
 | `<leader>uc`      | Choose a colorscheme                       |
-| `<leader>/`       | Fuzzy search in the current buffer         |
+| `<leader>/`       | Fuzzy search in the current buffer        |
 
 ### LSP
 
@@ -103,7 +103,7 @@ Leader is `<Space>`.
 | `<leader>e`             | Toggle file explorer (Neo-tree) |
 | `<leader>l`             | Toggle Harpoon quick menu       |
 | `<leader>ak`            | Add current file to Harpoon     |
-| `<leader>1`–`<leader>4` | Jump to Harpoon file 1–4        |
+| `<leader>1`-`<leader>4` | Jump to Harpoon file 1-4        |
 | `<C-S-P>` / `<C-S-N>`   | Previous / next Harpoon buffer  |
 | `]c` / `[c`             | Next / previous git hunk        |
 | `<leader>hp`            | Preview git hunk                |
@@ -113,10 +113,10 @@ Leader is `<Space>`.
 
 | Keymap    | Action                                     |
 | --------- | ------------------------------------------ |
-| `<C-s>`   | Save (normal & insert mode)                |
+| `<C-s>`   | Save in normal and insert mode            |
 | `<C-/>`   | Toggle comment                             |
 | `j` / `k` | Move by visual line when a line is wrapped |
 
 ## License
 
-MIT — see [LICENSE.md](./LICENSE.md).
+MIT — See [LICENSE.md](./LICENSE.md).
