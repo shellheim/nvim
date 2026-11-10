@@ -42,6 +42,12 @@ return {
         },
       },
 
+      rust_analyzer = {
+        rustfmt = {
+          config = vim.fn.expand '~/.config/rustfmt/rustfmt.toml',
+        },
+      },
+
       emmet_language_server = {
         filetypes = { 'html', 'eruby', 'htmldjango', 'javascriptreact', 'pug', 'typescriptreact', 'astro' },
       },

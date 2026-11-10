@@ -27,6 +27,7 @@ return {
         cpp = { 'clang-format' },
         python = { 'black' },
         c = { 'clang-format' },
+        rust = { 'rustfmt' },
       },
       format_on_save = {
         timeout_ms = 3000,
